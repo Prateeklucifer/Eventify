@@ -31,7 +31,7 @@ export default function Footer() {
                             <Link href={"/"} className={`${sourceCodePro.className} logo font-semibold text-xl lg:text-2xl text-fuchsia-500 tracking-tight`}>Eventify</Link>
 
                         </div>
-                        <div className="copy"> &copy; 2024 jeevandhara </div>
+                        <div className="copy"> &copy; 2024 eventify </div>
                     </div>
                     <ul className="text-sm lg:text-base flex flex-wrap  items-center justify-center gap-4">
                         {links.map((link, key) => (

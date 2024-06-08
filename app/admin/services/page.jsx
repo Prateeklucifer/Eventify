@@ -138,7 +138,7 @@ export default function AdminServices() {
             />
             <div className="md:mx-4">
                 <div className="container m-auto px-4 md:px-0">
-                    <div className="heading text-3xl font-semibold text-center my-4">FAQs</div>
+                    <div className="heading text-3xl font-semibold text-center my-4">Services</div>
                     <div className="faqs flex flex-col gap-6">
                         {services?.map((item, index) => (
                             <div className="faq flex flex-col" key={index}>

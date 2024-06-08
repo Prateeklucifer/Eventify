@@ -31,7 +31,7 @@ export default function ServicesCmp() {
                         </div>
                     </div>
                     <div className="mission">
-                        <div className="heading text-2xl md:text-3xl font-bold my-6 text-center">Service 1</div>
+                        <div className="heading text-2xl md:text-3xl font-bold my-6 text-center">Services</div>
                         <div className="sevices space-y-10">
                             <div className="flex flex-col xl:flex-row-reverse xl:items-center">
                                 <div className="left xl:w-[60%] lg:pl-8">

@@ -11,12 +11,17 @@ export async function GET() {
 
     if (allEntries.length == 0) {
       await About.create({
-        mainTitle: "mainTitle",
-        para1: "para1",
-        para2: "para2",
-        secondaryTitle: "secondaryTitle",
-        para3: "para3",
-        para4: "para4",
+        mainTitle: "Your Trusted Partner for Event Magic",
+        para1:
+          "We are a passionate team of event planners dedicated to exceeding your expectations and crafting experiences that leave a lasting impression. From intimate gatherings to large-scale productions, we handle every detail with meticulous care and unwavering commitment.",
+        para2:
+          "Our passion lies in transforming your vision into a seamless and captivating event.",
+        secondaryTitle:
+          "Our team of passionate event specialists works tirelessly to achieve this.",
+        para3:
+          "We combine meticulous planning, creative vision, and unwavering attention to detail to ensure every element of your event exceeds expectations",
+        para4:
+          "Whether it's an intimate gathering or a large-scale celebration, we are dedicated to making your event truly exceptional.",
       });
 
       let allData = await FAQs.find({});
