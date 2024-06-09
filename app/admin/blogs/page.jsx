@@ -203,7 +203,7 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="description">
-                    <div className="block py-2">Region</div>
+                    <div className="block py-2">Description</div>
                     <input
                       type="text"
                       name="description"
@@ -216,9 +216,9 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="imageUrl">
-                    <div className="block py-2">Age</div>
+                    <div className="block py-2">Image Url</div>
                     <input
-                      type="number"
+                      type="text"
                       name="imageUrl"
                       id="imageUrl"
                       className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
@@ -229,12 +229,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="para1">
-                    <div className="block py-2">Blood Type</div>
-                    <input
+                    <div className="block py-2">Paragraph 1</div>
+                    <textarea
                       type="text"
                       name="para1"
                       id="para1"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
                       value={item.para1}
                       onChange={(e) => {
                         updatePara1(e, item._id);
@@ -242,12 +242,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="para2">
-                    <div className="block py-2">Blood Type</div>
-                    <input
+                    <div className="block py-2">Paragraph 2</div>
+                    <textarea
                       type="text"
                       name="para2"
                       id="para2"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
                       value={item.para2}
                       onChange={(e) => {
                         updatePara2(e, item._id);
@@ -255,12 +255,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="para3">
-                    <div className="block py-2">Blood Type</div>
-                    <input
+                    <div className="block py-2">Paragraph 3</div>
+                    <textarea
                       type="text"
                       name="para3"
                       id="para3"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
                       value={item.para3}
                       onChange={(e) => {
                         updatePara3(e, item._id);

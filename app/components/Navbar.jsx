@@ -41,8 +41,19 @@ export default function Navbar() {
             <div className="container m-auto flex items-center justify-between">
                 <Link href={"/"} className={`${sourceCodePro.className} logo font-semibold text-xl lg:text-2xl text-fuchsia-500 tracking-tight`}>Eventify</Link>
                 <button className="forMobi md:hidden" onClick={() => { handleHamburger() }}><HiBars3 size={30} /></button>
-                <div className={`${isOpen ? "flex" : "hidden"} overlay absolute top-0 left-0 h-screen w-screen bg-black/40 z-10`}></div>
-                <div className={`${isOpen ? "flex right-0" : "-right-[100%]"} flex-col sidebar fixed top-0 h-screen bg-white w-60 text-neutral-900 py-3 px-4 z-[40] transition-all duration-300 ease-in-out`}>
+                <div
+          onClick={() => {
+            handleHamburger();
+          }}
+          className={`${
+            isOpen ? "flex" : "hidden"
+          } overlay top-0 left-0 h-screen w-screen bg-black/40 z-[30] fixed`}
+        ></div>
+        <div
+          className={`${
+            isOpen ? "flex right-0" : "-right-[100%]"
+          } flex-col sidebar fixed top-0 h-screen bg-white w-60 text-neutral-900 py-3 px-4 z-[40] transition-all duration-300 ease-in-out`}
+        >
                     <div className="header flex justify-end items-center">
                         <button onClick={() => { handleHamburger() }}> <HiOutlineX size={30} /> </button>
                     </div>

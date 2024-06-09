@@ -20,7 +20,7 @@ export default function Hero() {
                 </div>
             </div>
             <div className="right flex justify-center items-center md:w-1/2 ">
-                <img src="/image.png" alt="" className="object-cover md:rounded-none h-[30rem] md:w-full md:h-full" />
+                <img src="/hero.png" alt="" className="object-cover md:rounded-none h-[30rem] md:w-full md:h-full" />
             </div>
         </div>
     )

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Hero from "./components/Hero";
 import ContactCmp from "./components/Contact";
 import ServicesCmp from "./components/Services";
+import TeamsCmp from "./components/Team";
 
 export default function Home() {
   return (
@@ -15,6 +16,9 @@ export default function Home() {
       </div>
 
       <ServicesCmp />
+
+<div className="text-center text-fuchsia-500 text-xl font-bold mt-24">Our Team</div>
+      <TeamsCmp/>
 
       <div className="md:px-4 mt-24">
         <div className="container m-auto px-4 md:px-0">

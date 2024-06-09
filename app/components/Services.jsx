@@ -40,7 +40,7 @@ export default function ServicesCmp() {
                                     <div className="mt-4">{services[0].para4}</div>
                                 </div>
                                 <div className="text-center mt-6 xl:w-[40%] xl:rounded-lg overflow-hidden">
-                                    <Image src="/w-1.png" width={800} height={800} />
+                                    <Image src="/services1.png" width={800} height={800} className='h-full object-cover' />
                                 </div>
                             </div>
                             <div className="flex flex-col xl:flex-row xl:items-center">
@@ -50,17 +50,17 @@ export default function ServicesCmp() {
                                     <div className="mt-4">{services[0].para6}</div>
                                 </div>
                                 <div className="text-center mt-6 xl:w-[40%] xl:rounded-lg overflow-hidden">
-                                    <Image src="/w-1.png" width={800} height={800} />
+                                    <Image src="/services2.png" width={800} height={800} className='h-full object-cover' />
                                 </div>
                             </div>
                             <div className="flex flex-col xl:flex-row-reverse xl:items-center">
                                 <div className="left xl:w-[60%] lg:pl-8">
-                                    <div className="heading text-2xl md:text-3xl font-bold my-6">{services[0].Title}</div>
+                                    <div className="heading text-2xl md:text-3xl font-bold my-6">{services[0].fourthTitle}</div>
                                     <div className="mt-4">{services[0].para7}</div>
                                     <div className="mt-4">{services[0].para8}</div>
                                 </div>
                                 <div className="text-center mt-6 xl:w-[40%] xl:rounded-lg overflow-hidden">
-                                    <Image src="/w-1.png" width={800} height={800} />
+                                    <Image src="/services3.png" width={800} height={800} className='h-full object-cover' />
                                 </div>
                             </div>
                         </div>

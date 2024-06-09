@@ -31,6 +31,6 @@ export async function middleware(request) {
   }
 
   if (request.nextUrl.pathname == "/admin") {
-    return NextResponse.redirect(new URL("/admin/contact", request.url)); // if token is vailed redirect the user
+    return NextResponse.redirect(new URL("/admin/services", request.url)); // if token is vailed redirect the user
   }
 }
