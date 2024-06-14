@@ -22,7 +22,7 @@ export default function TeamsCmp() {
         mentors.map((item) => (
           <div className="mentor flex flex-col justify-center items-center">
             <Image
-              src={`/${item.imageUrl}`}
+              src={`/${item.imageURL}`}
               height={200}
               width={200}
               className="h-16 md:h-24 md:w-24 w-16 object-cover object-top rounded-full"
