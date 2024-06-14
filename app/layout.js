@@ -19,7 +19,9 @@ export default function RootLayout({ children }) {
           pathname.startsWith("/admin") ? "flex flex-col md:flex-row" : ""
         } text-zinc-800`}
       >
-        {pathname.startsWith("/admin") ? <SideBar /> : <Navbar />}
+        {pathname.startsWith("/admin") && <SideBar />}
+        {!pathname.startsWith("/admin") && !pathname.startsWith("/login")  && <Navbar />}
+
 
         {children}
 

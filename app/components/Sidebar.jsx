@@ -5,7 +5,7 @@ import { HiOutlineX } from "react-icons/hi";
 import Link from "next/link";
 import { useState } from "react";
 import { Source_Code_Pro } from "next/font/google";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
 
@@ -14,6 +14,8 @@ export default function SideBar() {
   console.log(pathname);
 
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+
 
   const links = [
     {
@@ -32,10 +34,29 @@ export default function SideBar() {
       name: "Enquiries",
       href: "/admin/contact",
     },
+    {
+      name: "Teams",
+      href: "/admin/team",
+    },
   ];
 
   function handleHamburger() {
     setIsOpen(!isOpen);
+  }
+
+
+  async function removeToken() {
+    let res = await fetch("http://localhost:3000/api/logout", {
+      method: "POST",
+    });
+
+    if (res.status === 200) {
+      setTimeout(() => {
+        router.push("/login");
+      });
+    } else {
+      // will throw error
+    }
   }
 
   return (
@@ -92,6 +113,7 @@ export default function SideBar() {
                   </Link>
                 </li>
               ))}
+              <button className="text-zinc-200 py-2 px-4 hover:text-gray-100 hover:bg-zinc-700 block rounded-md text-start bg-zinc-900 font-bold" onClick={()=>{removeToken()}}>Logout</button>
             </ul>
           </div>
         </div>
@@ -118,6 +140,7 @@ export default function SideBar() {
                 </Link>
               </li>
             ))}
+            <button className="text-zinc-200 py-3 px-4 hover:text-gray-100 hover:bg-zinc-700 block rounded-md text-start bg-zinc-900 font-bold" onClick={()=>{removeToken()}}>Logout</button>
           </ul>
         </div>
       </div>
