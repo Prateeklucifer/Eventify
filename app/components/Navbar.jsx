@@ -37,8 +37,8 @@ export default function Navbar() {
 
 
     return (
-        <nav className="py-3 md:py-6 px-4">
-            <div className="container m-auto flex items-center justify-between">
+        <nav className="py-3 md:py-6 px-4 sticky top-0 z-50 bg-white">
+            <div className="container m-auto flex items-center justify-between ">
                 <Link href={"/"} className={`${sourceCodePro.className} logo font-semibold text-xl lg:text-2xl text-fuchsia-500 tracking-tight`}>Eventify</Link>
                 <button className="forMobi md:hidden" onClick={() => { handleHamburger() }}><HiBars3 size={30} /></button>
                 <div
