@@ -92,7 +92,6 @@ const errorMsg = (message) => {
                   <div className="localty text-xl font-semibold flex items-center justify-between">Name: {item.firstName} <button className="text-red-600" onClick={() => {
                     deleteItem(index)
                   }}><MdDelete size={25} /></button></div>
-                  <div className="upload-time text-sm text-zinc-500">Request Time: 5hrs ago</div>
                 </div>
                 <div className="mid flex flex-col"><div className="name text-zinc-600">Email: <span className="text-zinc-600 font-bold">{item.email}</span></div> <div className="age text-zinc-600">Phone Number: {item.phone}</div> </div>
                 <div className="bottom mt-2 flex flex-col gap-1">
