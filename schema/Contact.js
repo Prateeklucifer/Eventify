@@ -19,6 +19,10 @@ const userSchema = new Schema(
     message: {
         type: String,
         required: [true, "message is required"]
+    },
+    actionTaken: {
+      type: Boolean,
+      required: true
     }
   },
   { timestamps: true }

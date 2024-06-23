@@ -14,6 +14,7 @@ export async function POST(req, res) {
       email: email,
       phone: phone,
       message: message,
+      actionTaken: false
     });
 
     return NextResponse.json({ status: 200 });
