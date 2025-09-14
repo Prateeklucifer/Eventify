@@ -42,7 +42,8 @@ export default function BloagContent({ params }) {
                         <div className="container px-4 md:px-0 m-auto flex flex-col md:items-center lg:px-28 xl:px-36 2xl:px-48">
                             <div className="heading text-2xl md:text-3xl font-bold self-start">{data[0].title}</div>
                             <div className="para mb-8 md:mb-10 mt-4 ">{data[0].description}</div>
-                            <Image src="/w-1.png" width={800} height={800} />
+                            {console.log(data)}
+                            <Image src={`/${data[0].imageUrl}`} width={800} height={800} />
                             <div className="content space-y-6 mt-6">
                                 <div className="para">{data[0].para1}</div>
 
