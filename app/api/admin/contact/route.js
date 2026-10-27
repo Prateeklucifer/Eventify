@@ -2,8 +2,6 @@ import ConnectToDB from "@/DB/ConnectToDB";
 import { NextResponse } from "next/server";
 import jsonwebtoken from "jsonwebtoken";
 import { cookies } from "next/headers";
-import Contact from "@/schema/Contact";
-import mongoose from "mongoose";
 
 export async function DELETE(req, res) {
   const { id } = await req.json();
@@ -17,8 +15,8 @@ export async function DELETE(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
-          await Contact.findByIdAndDelete({ _id: id });
+          const db = ConnectToDB();
+          await db.query("DELETE FROM contact WHERE id = ?", [id]);
           return NextResponse.json(
             { message: "Item removed sucessfully" },
             { status: 200 }
@@ -53,13 +51,12 @@ export async function POST(req, res){
 
       if (isVailed) {
         try {
-          ConnectToDB();
+          const db = ConnectToDB();
 
-          let data = await Contact.findOneAndUpdate(new mongoose.Types.ObjectId(id), {
-            actionTaken: !action
-          }
-            
-          );
+          let [data] = await db.query("UPDATE contact SET actionTaken = ? WHERE id = ?", [
+            !action,
+            id,
+          ]);
           return NextResponse.json({ data });
         } catch (error) {
           console.log(error);
@@ -90,9 +87,10 @@ export async function GET(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
+          const db = ConnectToDB();
 
-          let data = await Contact.find({});
+          let [rows] = await db.query("SELECT * FROM contact");
+          let data = rows.map((item) => ({ ...item, actionTaken: !!item.actionTaken }));
           return NextResponse.json({ data });
         } catch (error) {
           console.log(error);

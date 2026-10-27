@@ -1,13 +1,12 @@
 import ConnectToDB from "@/DB/ConnectToDB";
-import Blogs from "@/schema/Blogs";
 import { NextResponse } from "next/server";
 
 export async function GET() {
 
     try {
-        ConnectToDB()
+        const db = ConnectToDB()
 
-        let allEntries = await Blogs.find({})
+        let [allEntries] = await db.query("SELECT * FROM blogs")
         return NextResponse.json({ data: allEntries })
 
      } catch (err) {

@@ -1,13 +1,18 @@
-import mongoose from "mongoose"
+import mysql from "mysql2/promise";
+
+let pool;
 
 export default function ConnectToDB() {
-    try {
-        mongoose.connect(process.env.MONGODB_URL, {
-            dbName: process.env.MONGODB_DB_NAME
+    if (!pool) {
+        pool = mysql.createPool({
+            host: process.env.MYSQL_HOST,
+            port: process.env.MYSQL_PORT,
+            user: process.env.MYSQL_USER,
+            password: process.env.MYSQL_PASSWORD,
+            database: process.env.MYSQL_DB_NAME,
+            connectionLimit: 10
         })
-
-
-    } catch (e) {
-        console.log("error occured", e)
     }
+
+    return pool
 }

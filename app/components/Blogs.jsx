@@ -26,7 +26,7 @@ export default function BlogsCmp() {
         </div>:
       blogs?.map((item) => (
         <Link
-          href={`/blogs/${item._id}`}
+          href={`/blogs/${item.id}`}
           className="box flex flex-col sm:flex-row py-4 lg:mx-28 xl:mx-36 2xl:mx-48 ring-1 ring-zinc-200 px-3 rounded-lg"
         >
           <div className="left">

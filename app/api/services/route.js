@@ -1,16 +1,15 @@
 import ConnectToDB from "@/DB/ConnectToDB";
-import Services from "@/schema/Services";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    ConnectToDB();
-    let allEntries = await Services.find({});
+    const db = ConnectToDB();
+    let [allEntries] = await db.query("SELECT * FROM services");
 
     // if all entries 0 then create 3 of them
 
     if (allEntries.length == 0) {
-      await Services.create({
+      await db.query("INSERT INTO services SET ?", {
         mainTitle: "Event Services",
         para1:
           "Transform your vision into a reality with our comprehensive event services.  Whether you're planning a grand gala, a strategic conference, or an intimate gathering, our team of experienced professionals will handle every detail.  From venue selection and vendor coordination to creative design and seamless execution, we'll ensure your event is not only flawless but leaves a lasting impression on your guests.",
@@ -33,7 +32,7 @@ export async function GET() {
           "Don't let your event become a hidden gem. Let us amplify your message and get your target audience through the door.",
       });
 
-      let allData = await FAQs.find({});
+      let [allData] = await db.query("SELECT * FROM services");
 
       return NextResponse.json({ data: allData });
     } else {

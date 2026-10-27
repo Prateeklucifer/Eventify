@@ -1,5 +1,4 @@
 import ConnectToDB from "@/DB/ConnectToDB";
-import User from "@/schema/Users";
 import bcrypt from "bcrypt";
 import jsonwebtoken from 'jsonwebtoken'
 import { NextResponse } from 'next/server'
@@ -11,14 +10,14 @@ export async function POST(req, res) {
   let cookieStore = cookies()
 
   try {
-    ConnectToDB(); //connects to the DB
-    const user = await User.findOne({ name: name }); //checks if user exists or not
+    const db = ConnectToDB(); //connects to the DB
+    const [rows] = await db.query("SELECT * FROM users WHERE name = ?", [name]); //checks if user exists or not
+    const user = rows[0];
 
     if (user) {
-      console.log(user)
       const isVailed = await bcrypt.compare(password, user.password) // checks if passwd is vailed
       if (isVailed) {
-        const token = jsonwebtoken.sign({ id: user._id }, process.env.JWT_SECRET)
+        const token = jsonwebtoken.sign({ id: user.id }, process.env.JWT_SECRET)
         cookieStore.set('token', token, { expires: Date.now() + (24 * 60 * 60 * 1000) * 400 }) // sets jwt to cookie
         return NextResponse.json({ messege: "success" }, { status: 200 })
       } else {

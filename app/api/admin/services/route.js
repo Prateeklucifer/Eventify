@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import jsonwebtoken from "jsonwebtoken";
 import { cookies } from "next/headers";
 import ConnectToDB from "@/DB/ConnectToDB";
-import Services from "@/schema/Services";
 
 export async function POST(req, res) {
   const { AllServices } = await req.json();
@@ -16,10 +15,10 @@ export async function POST(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
+          const db = ConnectToDB();
 
-          AllServices.map(async (item) => {
-            await Services.findByIdAndUpdate(item._id, {
+          for (const item of AllServices) {
+            await db.query("UPDATE services SET ? WHERE id = ?", [{
               mainTitle: item.mainTitle,
               para1: item.para1,
               para2: item.para2,
@@ -32,8 +31,8 @@ export async function POST(req, res) {
               fourthTitle: item.fourthTitle,
               para7: item.para7,
               para8: item.para8,
-            });
-          });
+            }, item.id]);
+          }
 
           return NextResponse.json({ message: "Update Sucessfull" });
         } catch (error) {

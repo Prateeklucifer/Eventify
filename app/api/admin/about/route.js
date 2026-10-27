@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import jsonwebtoken from "jsonwebtoken";
 import { cookies } from "next/headers";
 import ConnectToDB from "@/DB/ConnectToDB";
-import About from "@/schema/About";
 
 export async function POST(req, res) {
   const { AllAbout } = await req.json();
@@ -16,18 +15,18 @@ export async function POST(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
+          const db = ConnectToDB();
 
-          AllAbout.map(async (item) => {
-            await About.findByIdAndUpdate(item._id, {
+          for (const item of AllAbout) {
+            await db.query("UPDATE about SET ? WHERE id = ?", [{
               mainTitle: item.mainTitle,
               para1: item.para1,
               para2: item.para2,
               secondaryTitle: item.secondaryTitle,
               para3: item.para3,
               para4: item.para4,
-            });
-          });
+            }, item.id]);
+          }
 
           return NextResponse.json({ message: "Update Sucessfull" });
         } catch (error) {

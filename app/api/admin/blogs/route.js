@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import jsonwebtoken from "jsonwebtoken";
 import { cookies } from "next/headers";
 import ConnectToDB from "@/DB/ConnectToDB";
-import Blogs from "@/schema/Blogs";
 
 export async function DELETE(req, res) {
   const { id } = await req.json();
@@ -16,8 +15,8 @@ export async function DELETE(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
-          await Blogs.findByIdAndDelete({ _id: id });
+          const db = ConnectToDB();
+          await db.query("DELETE FROM blogs WHERE id = ?", [id]);
           return NextResponse.json(
             { message: "Item removed sucessfully" },
             { status: 200 }
@@ -51,8 +50,8 @@ export async function POST(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
-          await Blogs.create({
+          const db = ConnectToDB();
+          await db.query("INSERT INTO blogs SET ?", {
             title: "Enter name",
             description: "description",
             imageUrl: "/w-1.png",
@@ -94,18 +93,18 @@ export async function PUT(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
+          const db = ConnectToDB();
 
-          AllRecords.map(async (item) => {
-            await Blogs.findByIdAndUpdate(item._id, {
+          for (const item of AllRecords) {
+            await db.query("UPDATE blogs SET ? WHERE id = ?", [{
               title: item.title,
               description: item.description,
               imageUrl: item.imageUrl,
               para1: item.para1,
               para2: item.para2,
               para3: item.para3,
-            });
-          });
+            }, item.id]);
+          }
 
           return NextResponse.json({ message: "Update Sucessfull" });
         } catch (error) {

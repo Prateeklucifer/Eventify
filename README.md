@@ -1,5 +1,30 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Database Setup (MySQL)
+
+Create a `.env` file in the root folder:
+
+```
+MYSQL_HOST=localhost
+MYSQL_PORT=3306
+MYSQL_USER=root
+MYSQL_PASSWORD=password
+MYSQL_DB_NAME=eventify
+JWT_SECRET=your_secret
+```
+
+Create the database and tables:
+
+```bash
+docker exec -i mysql mysql -uroot -ppassword < DB/schema.sql
+```
+
+Create an admin user for the login page:
+
+```bash
+node DB/createAdmin.js admin yourpassword
+```
+
 ## Getting Started
 
 First, run the development server:

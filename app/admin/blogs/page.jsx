@@ -46,7 +46,7 @@ export default function BloodsPage() {
   const updateTitle = (event, id) => {
     let data = [...blogs];
 
-    let donorIndex = data.findIndex((item) => item._id == id);
+    let donorIndex = data.findIndex((item) => item.id == id);
     if (donorIndex != -1) {
       data[donorIndex].title = event.target.value;
       setBlogs(data);
@@ -55,7 +55,7 @@ export default function BloodsPage() {
   const updateDescription = (event, id) => {
     let data = [...blogs];
 
-    let donorIndex = data.findIndex((item) => item._id == id);
+    let donorIndex = data.findIndex((item) => item.id == id);
     if (donorIndex != -1) {
       data[donorIndex].description = event.target.value;
       setBlogs(data);
@@ -64,7 +64,7 @@ export default function BloodsPage() {
   const updateImageUrl = (event, id) => {
     let data = [...blogs];
 
-    let donorIndex = data.findIndex((item) => item._id == id);
+    let donorIndex = data.findIndex((item) => item.id == id);
     if (donorIndex != -1) {
       data[donorIndex].imageUrl = event.target.value;
       setBlogs(data);
@@ -73,7 +73,7 @@ export default function BloodsPage() {
   const updatePara1 = (event, id) => {
     let data = [...blogs];
 
-    let donorIndex = data.findIndex((item) => item._id == id);
+    let donorIndex = data.findIndex((item) => item.id == id);
     if (donorIndex != -1) {
       data[donorIndex].para1 = event.target.value;
       setBlogs(data);
@@ -82,7 +82,7 @@ export default function BloodsPage() {
   const updatePara2 = (event, id) => {
     let data = [...blogs];
 
-    let donorIndex = data.findIndex((item) => item._id == id);
+    let donorIndex = data.findIndex((item) => item.id == id);
     if (donorIndex != -1) {
       data[donorIndex].para2 = event.target.value;
       setBlogs(data);
@@ -91,7 +91,7 @@ export default function BloodsPage() {
   const updatePara3 = (event, id) => {
     let data = [...blogs];
 
-    let donorIndex = data.findIndex((item) => item._id == id);
+    let donorIndex = data.findIndex((item) => item.id == id);
     if (donorIndex != -1) {
       data[donorIndex].para3 = event.target.value;
       setBlogs(data);
@@ -177,7 +177,7 @@ export default function BloodsPage() {
                       <MdDelete
                         size={20}
                         onClick={() => {
-                          removeFeild(item._id);
+                          removeFeild(item.id);
                         }}
                       />
                     </button>
@@ -198,7 +198,7 @@ export default function BloodsPage() {
                       className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
                       value={item.title}
                       onChange={(e) => {
-                        updateTitle(e, item._id);
+                        updateTitle(e, item.id);
                       }}
                     />
                   </label>
@@ -211,7 +211,7 @@ export default function BloodsPage() {
                       className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
                       value={item.description}
                       onChange={(e) => {
-                        updateDescription(e, item._id);
+                        updateDescription(e, item.id);
                       }}
                     />
                   </label>
@@ -224,7 +224,7 @@ export default function BloodsPage() {
                       className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
                       value={item.imageUrl}
                       onChange={(e) => {
-                        updateImageUrl(e, item._id);
+                        updateImageUrl(e, item.id);
                       }}
                     />
                   </label>
@@ -237,7 +237,7 @@ export default function BloodsPage() {
                       className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
                       value={item.para1}
                       onChange={(e) => {
-                        updatePara1(e, item._id);
+                        updatePara1(e, item.id);
                       }}
                     />
                   </label>
@@ -250,7 +250,7 @@ export default function BloodsPage() {
                       className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
                       value={item.para2}
                       onChange={(e) => {
-                        updatePara2(e, item._id);
+                        updatePara2(e, item.id);
                       }}
                     />
                   </label>
@@ -263,7 +263,7 @@ export default function BloodsPage() {
                       className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
                       value={item.para3}
                       onChange={(e) => {
-                        updatePara3(e, item._id);
+                        updatePara3(e, item.id);
                       }}
                     />
                   </label>

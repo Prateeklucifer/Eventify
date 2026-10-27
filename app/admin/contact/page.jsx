@@ -33,7 +33,7 @@ export default function AdminContactPage() {
 
     let data = await fetch("http://localhost:3000/api/admin/contact", {
       method: "DELETE",
-      body: JSON.stringify({ id: newData[index]._id }),
+      body: JSON.stringify({ id: newData[index].id }),
     });
 
     if (data.status == 200) {
@@ -115,7 +115,7 @@ export default function AdminContactPage() {
                       Name: {item.firstName}
                       <div className="btns flex items-center justify-center gap-4">
                         <button className="" onClick={()=>{
-                          updateStatus(item._id, item.actionTaken)
+                          updateStatus(item.id, item.actionTaken)
                         }}>
                           <TiTick size={25}/>
                         </button>

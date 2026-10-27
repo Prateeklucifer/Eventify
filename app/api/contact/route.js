@@ -1,5 +1,4 @@
 import ConnectToDB from "@/DB/ConnectToDB";
-import Contact from "@/schema/Contact";
 import { NextResponse } from "next/server";
 import validator from "validator";
 
@@ -7,10 +6,10 @@ export async function POST(req, res) {
   const { firstName, lastName, email, phone, message } = await req.json();
 
   try {
-    ConnectToDB();
+    const db = ConnectToDB();
 
     if (validator.isEmail(email) && phone.length == 10) {
-      await Contact.create({
+      await db.query("INSERT INTO contact SET ?", {
         firstName: firstName,
         lastName: lastName,
         email: email,

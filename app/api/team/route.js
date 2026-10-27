@@ -1,22 +1,23 @@
 import ConnectToDB from "@/DB/ConnectToDB";
-import Team from "@/schema/Team";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    ConnectToDB();
-    let allEntries = await Team.find({});
+    const db = ConnectToDB();
+    let [allEntries] = await db.query("SELECT * FROM team");
 
     if (allEntries.length == 0) {
-      await Team.create(
-        { name: "Harpreet Singh", imageURL: "images/m1.png" },
-        { name: "Shubham Kumar", imageURL: "images/m2.png" },
-        { name: "Kunal Mehta", imageURL: "images/m3.png" },
-        { name: "Rajeev Sharma", imageURL: "images/m4.png" },
-        { name: "Sunil Yadav", imageURL: "images/m5.png" }
-      );
+      await db.query("INSERT INTO team (name, imageURL) VALUES ?", [
+        [
+          ["Harpreet Singh", "images/m1.png"],
+          ["Shubham Kumar", "images/m2.png"],
+          ["Kunal Mehta", "images/m3.png"],
+          ["Rajeev Sharma", "images/m4.png"],
+          ["Sunil Yadav", "images/m5.png"],
+        ],
+      ]);
 
-      let allData = await Mentor.find({});
+      let [allData] = await db.query("SELECT * FROM team");
 
       return NextResponse.json({ data: allData });
     } else {

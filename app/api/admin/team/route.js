@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import jsonwebtoken from "jsonwebtoken";
 import { cookies } from "next/headers";
 import ConnectToDB from "@/DB/ConnectToDB";
-import Team from "@/schema/Team";
 
 export async function PUT(req, res) {
   const { AllRecords } = await req.json();
@@ -16,14 +15,15 @@ export async function PUT(req, res) {
 
       if (isVailed) {
         try {
-          ConnectToDB();
+          const db = ConnectToDB();
 
-          AllRecords.map(async (item) => {
-            await Team.findByIdAndUpdate(item._id, {
-              name: item.name,
-              imageURL: item.imageURL
-            });
-          });
+          for (const item of AllRecords) {
+            await db.query("UPDATE team SET name = ?, imageURL = ? WHERE id = ?", [
+              item.name,
+              item.imageURL,
+              item.id,
+            ]);
+          }
 
           return NextResponse.json({ message: "Update Sucessfull" });
         } catch (error) {
