@@ -25,7 +25,7 @@ export default function AboutCmp() {
           <div className="space-y-20 my-8">
             <div className="flex flex-col xl:flex-row xl:items-center ">
               <div className="left xl:w-[60%] lg:pr-8">
-                <div className="heading text-3xl font-bold my-6">
+                <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6">
                   {About[0].mainTitle}
                 </div>
                 <div className="mt-4">{About[0].para1}</div>
@@ -36,12 +36,12 @@ export default function AboutCmp() {
               </div>
             </div>
             <div className="mission">
-              <div className="heading text-3xl font-bold my-6 text-center">
+              <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6 text-center">
                 OUR GOAL
               </div>
               <div className="flex flex-col xl:flex-row-reverse xl:items-center">
                 <div className="left xl:w-[60%] lg:pl-8">
-                  <div className="heading text-3xl font-bold my-6">
+                  <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6">
                     {About[0].secondaryTitle}
                   </div>
                   <div className="mt-4">{About[0].para3}</div>

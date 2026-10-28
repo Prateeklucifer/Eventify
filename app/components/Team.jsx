@@ -17,44 +17,31 @@ export default function TeamsCmp() {
   }, []);
 
   return (
-    <div className="mentors flex flex-wrap sm:grid-cols-4 2xl:grid-cols-5 gap-6 mt-6 md:mt-14 lg:px-36 xl:px-56 2xl:px-72 justify-center lg:justify-between items-center">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
       {mentors ? (
         mentors.map((item) => (
-          <div className="mentor flex flex-col justify-center items-center">
-            <Image
-              src={`/${item.imageURL}`}
-              height={200}
-              width={200}
-              className="h-16 md:h-24 md:w-24 w-16 object-cover object-top rounded-full"
-            />
-            <div className="name text-sm text-gray-700 mt-2 text-center">
-              {item.name}
+          <div className="mentor" key={item.id}>
+            <div className="overflow-hidden rounded-2xl bg-mist">
+              <Image
+                src={`/${item.imageURL}`}
+                height={450}
+                width={300}
+                alt={item.name}
+                className="w-full aspect-[3/4] object-cover object-top hover:scale-105 transition duration-500"
+              />
             </div>
+            <div className="name font-bold text-zinc-900 mt-3">{item.name}</div>
           </div>
         ))
       ) : (
-        <div className="md:flex justify-between items-center w-full grid grid-cols-2 gap-8 animate-pulse">
-          <div className="mentor flex flex-col justify-center items-center">
-            <div className="h-16 md:h-24 md:w-24 w-16 rounded-full bg-gray-800"></div>
-            <div className="mt-3 h-4 w-[50%] md:w-full bg-gray-800"></div>
-          </div>
-          <div className="mentor flex flex-col justify-center items-center">
-            <div className="h-16 md:h-24 md:w-24 w-16 rounded-full bg-gray-800"></div>
-            <div className="mt-3 h-4 w-[50%] md:w-full bg-gray-800"></div>
-          </div>
-          <div className="mentor flex flex-col justify-center items-center">
-            <div className="h-16 md:h-24 md:w-24 w-16 rounded-full bg-gray-800"></div>
-            <div className="mt-3 h-4 w-[50%] md:w-full bg-gray-800"></div>
-          </div>
-          <div className="mentor flex flex-col justify-center items-center">
-            <div className="h-16 md:h-24 md:w-24 w-16 rounded-full bg-gray-800"></div>
-            <div className="mt-3 h-4 w-[50%] md:w-full bg-gray-800"></div>
-          </div>
-          <div className="mentor flex flex-col justify-center items-center">
-            <div className="h-16 md:h-24 md:w-24 w-16 rounded-full bg-gray-800"></div>
-            <div className="mt-3 h-4 w-[50%] md:w-full bg-gray-800"></div>
-          </div>
-        </div>
+        <>
+          {[1, 2, 3, 4, 5].map((item) => (
+            <div className="animate-pulse" key={item}>
+              <div className="w-full aspect-[3/4] rounded-2xl bg-zinc-200"></div>
+              <div className="mt-3 h-4 w-2/3 rounded bg-zinc-200"></div>
+            </div>
+          ))}
+        </>
       )}
     </div>
   );

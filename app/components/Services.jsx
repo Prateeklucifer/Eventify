@@ -25,7 +25,7 @@ export default function ServicesCmp() {
           <div className="space-y-20 my-8">
             <div className="flex flex-col xl:flex-row md:items-center md:justify-center ">
               <div className="left lg:pr-8 w-full">
-                <div className="heading text-2xl md:text-3xl font-bold my-6">
+                <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6">
                   {services[0].mainTitle}
                 </div>
                 <div className="mt-4">{services[0].para1}</div>
@@ -33,13 +33,13 @@ export default function ServicesCmp() {
               </div>
             </div>
             <div className="mission">
-              <div className="heading text-2xl md:text-3xl font-bold my-6 text-center">
+              <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6 text-center">
                 Services
               </div>
               <div className="sevices space-y-10">
                 <div className="flex flex-col xl:flex-row-reverse xl:items-center">
                   <div className="left xl:w-[60%] lg:pl-8">
-                    <div className="heading text-2xl md:text-3xl font-bold my-6">
+                    <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6">
                       {services[0].secondaryTitle}
                     </div>
                     <div className="mt-4">{services[0].para3}</div>
@@ -56,7 +56,7 @@ export default function ServicesCmp() {
                 </div>
                 <div className="flex flex-col xl:flex-row xl:items-center">
                   <div className="left xl:w-[60%] lg:pr-8">
-                    <div className="heading text-2xl md:text-3xl font-bold my-6">
+                    <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6">
                       {services[0].thirdTitle}
                     </div>
                     <div className="mt-4">{services[0].para5}</div>
@@ -73,7 +73,7 @@ export default function ServicesCmp() {
                 </div>
                 <div className="flex flex-col xl:flex-row-reverse xl:items-center">
                   <div className="left xl:w-[60%] lg:pl-8">
-                    <div className="heading text-2xl md:text-3xl font-bold my-6">
+                    <div className="heading font-display uppercase text-3xl md:text-5xl leading-none my-6">
                       {services[0].fourthTitle}
                     </div>
                     <div className="mt-4">{services[0].para7}</div>
@@ -91,7 +91,7 @@ export default function ServicesCmp() {
               </div>
             </div>
 
-            <div className="font-bold md:text-3xl text-2xl text-center">Events we Organize</div>
+            <div className="font-display uppercase md:text-5xl text-3xl text-center">Events we Organize</div>
             <div className="servicesPricing grid grid-cols-1 md:grid-cols-2 gap-6 xl:grid-cols-3">
               <div className="box">
                 <div className="top overflow-hidden rounded-md">

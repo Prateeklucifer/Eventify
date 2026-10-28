@@ -19,6 +19,12 @@ Create the database and tables:
 docker exec -i mysql mysql -uroot -ppassword < DB/schema.sql
 ```
 
+Add some sample blogs (optional):
+
+```bash
+docker exec -i mysql mysql -uroot -ppassword < DB/sample_data.sql
+```
+
 Create an admin user for the login page:
 
 ```bash

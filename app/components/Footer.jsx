@@ -26,23 +26,24 @@ export default function Footer() {
     }
     ]
     return (
-        <div className="bg-zinc-50 mt-16">
-            <div className="container m-auto">
-                <div className="px-4 flex flex-col items-center gap-8 lg:flex-row py-6 justify-between">
-                    <div className="left flex flex-col items-center justify-center lg:flex-row gap-8">
-                        <div className="heading">
-                            <Link href={"/"} className={`${sourceCodePro.className} logo font-semibold text-xl lg:text-2xl text-fuchsia-500 tracking-tight`}>Eventify</Link>
-
-                        </div>
-                        <div className="copy"> &copy; 2024 eventify </div>
+        <div className="bg-plum text-zinc-400 mt-24">
+            <div className="container m-auto px-4">
+                <div className="py-14 flex flex-col lg:flex-row gap-10 justify-between border-b border-white/10">
+                    <div className="left max-w-md">
+                        <div className="font-display uppercase text-white text-4xl md:text-5xl leading-none">Got an event coming up?</div>
+                        <Link href={"/contact"} className="inline-block mt-6 bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold px-6 py-3 rounded-full">Tell us about it</Link>
                     </div>
-                    <ul className="text-sm lg:text-base flex flex-wrap  items-center justify-center gap-4">
+                    <ul className="grid grid-cols-2 gap-x-12 gap-y-3 h-fit">
                         {links.map((link, key) => (
                             <li key={key}>
-                                <Link href={link.href} className="text-zinc-600 hover:text-zinc-900" >{link.name}</Link>
+                                <Link href={link.href} className="hover:text-white" >{link.name}</Link>
                             </li>
                         ))}
                     </ul>
+                </div>
+                <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm">
+                    <Link href={"/"} className={`${sourceCodePro.className} logo font-semibold text-xl text-fuchsia-400 tracking-tight`}>Eventify</Link>
+                    <div className="copy"> &copy; {new Date().getFullYear()} Eventify. All rights reserved.</div>
                 </div>
             </div>
         </div>

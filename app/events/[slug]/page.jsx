@@ -112,21 +112,21 @@ export default function EventContent({ params }) {
             />
             {loading ? <div className="h-[50vh] flex items-center justify-center">Loading</div> :
                 found ?
-                    <div className="md:px-4 my-8">
+                    <div className="md:px-4 my-12">
                         <div className="container px-4 md:px-0 m-auto flex flex-col lg:flex-row gap-10 lg:px-28 xl:px-36 2xl:px-48">
                             <div className="left lg:w-3/5">
-                                <div className="heading text-2xl md:text-3xl font-bold">{data[0].title}</div>
+                                <h1 className="font-display uppercase text-4xl md:text-6xl leading-none">{data[0].title}</h1>
                                 <div className="flex flex-col sm:flex-row sm:gap-6 gap-2 mt-4 text-zinc-600">
                                     <div className="flex items-center gap-2"><IoCalendarOutline />{dateGiver(data[0].eventDate)}{data[0].eventTime && `, ${data[0].eventTime}`}</div>
                                     <div className="flex items-center gap-2"><IoLocationOutline />{data[0].venue}</div>
                                 </div>
-                                <Image src={`/${data[0].imageUrl}`} width={800} height={500} className="rounded-lg mt-6 w-full object-cover" />
+                                <Image src={`/${data[0].imageUrl}`} width={800} height={500} className="rounded-2xl mt-8 w-full object-cover" />
                                 <div className="para mt-6 whitespace-pre-line">{data[0].description}</div>
                             </div>
 
                             <div className="right lg:w-2/5">
-                                <div className="ring-1 ring-zinc-300 rounded-lg p-4 md:p-6 flex flex-col gap-4 lg:sticky lg:top-28">
-                                    <div className="text-xl font-bold">Book your seat</div>
+                                <div className="bg-mist rounded-2xl p-5 md:p-7 flex flex-col gap-4 lg:sticky lg:top-28">
+                                    <div className="font-display uppercase text-3xl">Book your seat</div>
                                     <div className="text-sm">
                                         {isOver ? <span className="text-zinc-500">This event is over</span> :
                                             seatsLeft > 0 ? <span className="text-fuchsia-600 font-semibold">{seatsLeft} out of {data[0].totalSeats} seats left</span>
@@ -135,30 +135,30 @@ export default function EventContent({ params }) {
 
                                     {!isOver && seatsLeft > 0 && <>
                                         <div className="name">
-                                            <label htmlFor="name" className="block mb-2">Name <span className="text-red-600">*</span></label>
-                                            <input type="text" id="name" className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={name} onChange={(e) => {
+                                            <label htmlFor="name" className="block mb-2 text-sm font-semibold">Name <span className="text-red-600">*</span></label>
+                                            <input type="text" id="name" className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={name} onChange={(e) => {
                                                 setName(e.target.value)
                                             }} />
                                         </div>
                                         <div className="email">
-                                            <label htmlFor="email" className="block mb-2">Email <span className="text-red-600">*</span></label>
-                                            <input type="email" id="email" className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={email} onChange={(e) => {
+                                            <label htmlFor="email" className="block mb-2 text-sm font-semibold">Email <span className="text-red-600">*</span></label>
+                                            <input type="email" id="email" className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={email} onChange={(e) => {
                                                 setEmail(e.target.value)
                                             }} />
                                         </div>
                                         <div className="phone">
-                                            <label htmlFor="phone" className="block mb-2">Phone number <span className="text-red-600">*</span></label>
-                                            <input type="number" id="phone" className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={phone} onChange={(e) => {
+                                            <label htmlFor="phone" className="block mb-2 text-sm font-semibold">Phone number <span className="text-red-600">*</span></label>
+                                            <input type="number" id="phone" className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={phone} onChange={(e) => {
                                                 setPhone(e.target.value)
                                             }} />
                                         </div>
                                         <div className="seats">
-                                            <label htmlFor="seats" className="block mb-2">No. of seats</label>
-                                            <input type="number" id="seats" min={1} max={seatsLeft} className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={seats} onChange={(e) => {
+                                            <label htmlFor="seats" className="block mb-2 text-sm font-semibold">No. of seats</label>
+                                            <input type="number" id="seats" min={1} max={seatsLeft} className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={seats} onChange={(e) => {
                                                 setSeats(e.target.value)
                                             }} />
                                         </div>
-                                        <button className="text-white px-4 py-2 rounded-md bg-fuchsia-500 w-full font-bold" onClick={() => {
+                                        <button className="text-white px-6 py-3 rounded-full bg-fuchsia-500 hover:bg-fuchsia-600 w-full font-bold" onClick={() => {
                                             registerNow()
                                         }}>Register</button>
                                     </>}

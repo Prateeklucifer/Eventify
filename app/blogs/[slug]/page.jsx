@@ -1,6 +1,7 @@
 "use client"
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function BloagContent({ params }) {
@@ -36,22 +37,21 @@ export default function BloagContent({ params }) {
     return (
 
         <>
-            {loading ? <div>Loading</div> :
+            {loading ? <div className="h-[50vh] flex items-center justify-center">Loading</div> :
                 found ?
-                    <div className="md:px-4 my-8">
-                        <div className="container px-4 md:px-0 m-auto flex flex-col md:items-center lg:px-28 xl:px-36 2xl:px-48">
-                            <div className="heading text-2xl md:text-3xl font-bold self-start">{data[0].title}</div>
-                            <div className="para mb-8 md:mb-10 mt-4 ">{data[0].description}</div>
-                            {console.log(data)}
-                            <Image src={`/${data[0].imageUrl}`} width={800} height={800} />
-                            <div className="content space-y-6 mt-6">
-                                <div className="para">{data[0].para1}</div>
-
-                                <div className="para">{data[0].para2}</div>
-                                <div className="para">{data[0].para3}</div>
+                    <div className="md:px-4 my-12 md:my-16">
+                        <div className="container px-4 md:px-0 m-auto max-w-3xl">
+                            <Link href={"/blogs"} className="font-code text-xs uppercase tracking-widest text-fuchsia-600 hover:underline">&larr; All blogs</Link>
+                            <h1 className="font-display uppercase text-4xl md:text-6xl leading-none mt-4">{data[0].title}</h1>
+                            <div className="para text-lg text-zinc-600 mt-5">{data[0].description}</div>
+                            <Image src={`/${data[0].imageUrl}`} width={800} height={530} alt={data[0].title} className="rounded-2xl w-full object-cover mt-8" />
+                            <div className="content space-y-6 mt-10 text-lg leading-relaxed text-zinc-700">
+                                <p>{data[0].para1}</p>
+                                <p>{data[0].para2}</p>
+                                <p>{data[0].para3}</p>
                             </div>
                         </div>
-                    </div> : <div>Not found</div>
+                    </div> : <div className="h-[50vh] flex items-center justify-center">Blog not found</div>
             }
 
         </>

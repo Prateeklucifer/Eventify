@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { IoLocationOutline, IoCalendarOutline } from "react-icons/io5";
 
 export default function EventsCmp({ limit }) {
   const [events, setEvents] = useState(undefined);
@@ -25,9 +24,13 @@ export default function EventsCmp({ limit }) {
     setLoaded(true);
   };
 
-  function dateGiver(date) {
-    let data = date.split("-");
-    return data[2] + "/" + data[1] + "/" + data[0];
+  function niceDate(date) {
+    return new Date(date + "T00:00").toLocaleDateString("en-IN", {
+      weekday: "short",
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
   }
 
   useEffect(() => {
@@ -35,44 +38,55 @@ export default function EventsCmp({ limit }) {
   }, []);
 
   return (
-    <div className="container m-auto px-4 md:px-0 lg:px-28 xl:px-36 2xl:px-48">
+    <div className="container m-auto px-4">
       {loaded && events.length == 0 ? (
-        <div className="flex items-center justify-center h-[30vh]">
-          <div className="">No upcoming events</div>
+        <div className="flex flex-col items-center justify-center h-[30vh] text-center">
+          <div className="font-bold text-lg">No events are open for booking right now</div>
+          <Link href={"/contact"} className="text-fuchsia-600 font-bold mt-2 hover:underline">
+            Planning your own? Talk to us &rarr;
+          </Link>
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {events?.map((item) => (
             <Link
               href={`/events/${item.id}`}
               key={item.id}
-              className="box flex flex-col ring-1 ring-zinc-200 rounded-lg overflow-hidden hover:ring-fuchsia-400"
+              className="ticket group flex flex-col bg-white rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300"
             >
-              <Image
-                src={`/${item.imageUrl}`}
-                height={300}
-                width={400}
-                className="w-full h-44 object-cover"
-              />
-              <div className="p-4 flex flex-col gap-2 flex-1">
-                <div className="title font-semibold text-lg">{item.title}</div>
-                <div className="flex items-center gap-2 text-sm text-zinc-600">
-                  <IoCalendarOutline />
-                  {dateGiver(item.eventDate)}{item.eventTime && `, ${item.eventTime}`}
+              <div className="overflow-hidden rounded-t-2xl">
+                <Image
+                  src={`/${item.imageUrl}`}
+                  height={300}
+                  width={400}
+                  alt={item.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
+                />
+              </div>
+              <div className="p-5 flex flex-col gap-1 flex-1">
+                <div className="font-code text-xs uppercase tracking-wider text-fuchsia-600">
+                  {niceDate(item.eventDate)}
+                  {item.eventTime && ` · ${item.eventTime}`}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-zinc-600">
-                  <IoLocationOutline />
-                  {item.venue}
-                </div>
-                <div className="mt-auto pt-2 text-sm font-semibold">
-                  {item.totalSeats - item.bookedSeats > 0 ? (
-                    <span className="text-fuchsia-600">
-                      {item.totalSeats - item.bookedSeats} seats left
-                    </span>
-                  ) : (
-                    <span className="text-red-600">Housefull</span>
-                  )}
-                </div>
+                <div className="title font-bold text-xl text-zinc-900 leading-snug">{item.title}</div>
+                <div className="text-sm text-zinc-500">{item.venue}</div>
+              </div>
+
+              {/* perforated line with half circles cut on both sides */}
+              <div className="relative mx-5 border-t-2 border-dashed border-zinc-200">
+                <span className="absolute -top-3 -left-8 w-6 h-6 rounded-full bg-mist"></span>
+                <span className="absolute -top-3 -right-8 w-6 h-6 rounded-full bg-mist"></span>
+              </div>
+
+              <div className="px-5 py-4 flex items-center justify-between font-code text-xs uppercase tracking-wider">
+                <span className="text-zinc-400">Admit</span>
+                {item.totalSeats - item.bookedSeats > 0 ? (
+                  <span className="text-zinc-900 font-semibold">
+                    {item.totalSeats - item.bookedSeats} seats left
+                  </span>
+                ) : (
+                  <span className="text-red-600 font-semibold">Housefull</span>
+                )}
               </div>
             </Link>
           ))}

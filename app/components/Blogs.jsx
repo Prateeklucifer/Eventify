@@ -20,29 +20,33 @@ export default function BlogsCmp() {
   }, []);
 
   return (
-    <div className="flex flex-col gap-6 px-4 md:px-0">
-      { loaded && blogs.length == 0 ? <div className="flex items-center justify-center h-[50vh]">
-          <div className="">No Entries found</div>
-        </div>:
-      blogs?.map((item) => (
-        <Link
-          href={`/blogs/${item.id}`}
-          className="box flex flex-col sm:flex-row py-4 lg:mx-28 xl:mx-36 2xl:mx-48 ring-1 ring-zinc-200 px-3 rounded-lg"
-        >
-          <div className="left">
-            <Image
-              src={`/${item.imageUrl}`}
-              height={150}
-              width={150}
-              className="rounded-lg w-full h-full object-cover"
-            />
-          </div>
-          <div className="right mt-4 space-y-2 sm:mt-0 sm:py-4 sm:px-4 flex flex-col sm:w-full">
-            <div className="title font-semibold text-lg">{item.title}</div>
-            <div className="para text-zinc-600">{item.description}</div>
-          </div>
-        </Link>
-      ))}
+    <div className="container m-auto px-4">
+      {loaded && blogs.length == 0 ? (
+        <div className="flex items-center justify-center h-[50vh]">
+          <div className="">No blogs posted yet</div>
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+          {blogs?.map((item) => (
+            <Link href={`/blogs/${item.id}`} key={item.id} className="group flex flex-col">
+              <div className="overflow-hidden rounded-2xl">
+                <Image
+                  src={`/${item.imageUrl}`}
+                  height={400}
+                  width={600}
+                  alt={item.title}
+                  className="w-full aspect-[3/2] object-cover group-hover:scale-105 transition duration-500"
+                />
+              </div>
+              <div className="title font-bold text-xl text-zinc-900 leading-snug mt-4 group-hover:text-fuchsia-600">
+                {item.title}
+              </div>
+              <div className="para text-zinc-600 mt-2">{item.description}</div>
+              <div className="font-code text-xs uppercase tracking-wider text-fuchsia-600 mt-3">Read more &rarr;</div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

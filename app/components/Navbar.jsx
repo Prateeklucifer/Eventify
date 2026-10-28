@@ -5,6 +5,7 @@ import { HiBars3 } from "react-icons/hi2";
 import { HiOutlineX } from "react-icons/hi";
 import Link from 'next/link'
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
 
 
@@ -12,6 +13,7 @@ const sourceCodePro = Source_Code_Pro({ subsets: ["latin"] });
 export default function Navbar() {
 
     const [isOpen, setIsOpen] = useState(false)
+    const pathname = usePathname()
 
     const links = [{
         name: "Home",
@@ -40,7 +42,7 @@ export default function Navbar() {
 
 
     return (
-        <nav className="py-3 md:py-6 px-4 sticky top-0 z-50 bg-white">
+        <nav className="py-3 md:py-4 px-4 sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-zinc-100">
             <div className="container m-auto flex items-center justify-between ">
                 <Link href={"/"} className={`${sourceCodePro.className} logo font-semibold text-xl lg:text-2xl text-fuchsia-500 tracking-tight`}>Eventify</Link>
                 <button className="forMobi md:hidden" onClick={() => { handleHamburger() }}><HiBars3 size={30} /></button>
@@ -68,13 +70,16 @@ export default function Navbar() {
                         ))}
                     </ul>
                 </div>
-                <ul className="hidden md:flex gap-7 md:text-sm lg:text-base">
-                    {links.map((link, key) => (
-                        <li key={key}>
-                            <Link href={link.href} className="text-zinc-600 hover:text-fuchsia-600" >{link.name}</Link>
-                        </li>
-                    ))}
-                </ul>
+                <div className="hidden md:flex items-center gap-8">
+                    <ul className="flex gap-6 lg:gap-7 text-sm">
+                        {links.map((link, key) => (
+                            <li key={key}>
+                                <Link href={link.href} className={`hover:text-fuchsia-600 ${pathname == link.href ? "text-zinc-900 font-bold" : "text-zinc-600"}`} >{link.name}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                    <Link href={"/contact"} className="text-sm font-bold bg-plum text-white px-4 py-2 rounded-full hover:bg-fuchsia-600">Plan an event</Link>
+                </div>
             </div>
         </nav>
     )

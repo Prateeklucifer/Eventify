@@ -50,7 +50,7 @@ export default function ContactCmp() {
         let res = await data.json()
         
         if (data.status == 200) {
-            sucessMsg("details sended")
+            sucessMsg("Enquiry sent, we will contact you soon")
           } else {
             errorMsg("something went wrong")
           }
@@ -70,45 +70,45 @@ export default function ContactCmp() {
                 pauseOnHover={false}
                 theme="light"
             />
-            <div className=" container m-auto flex flex-col lg:px-28 xl:px-72 ">
-                <div className="right px-4 py-2 flex flex-col gap-6 lg:py-8 lg:px-12 xl:px-28">
+            <div className="w-full">
+                <div className="right flex flex-col gap-5">
                     <div className="name flex flex-col gap-4 md:flex-row">
                         <div className="firstname md:w-1/2">
-                            <label htmlFor="last" className="block mb-2">First Name <span className="text-red-600">*</span></label>
-                            <input type="text" name="" id="last" className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={firstName} onChange={(e) => {
+                            <label htmlFor="last" className="block mb-2 text-sm font-semibold">First Name <span className="text-red-600">*</span></label>
+                            <input type="text" name="" id="last" className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={firstName} onChange={(e) => {
                                 setFirstName(e.target.value)
                             }} />
                         </div>
                         <div className="lastname md:w-1/2">
-                            <label htmlFor="name" className="block mb-2">Last Name <span className="text-red-600">*</span></label>
-                            <input type="text" name="" id="name" className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={lastName} onChange={(e) => {
+                            <label htmlFor="name" className="block mb-2 text-sm font-semibold">Last Name <span className="text-red-600">*</span></label>
+                            <input type="text" name="" id="name" className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={lastName} onChange={(e) => {
                                 setLastName(e.target.value)
                             }} />
                         </div>
                     </div>
 
                     <div className="email">
-                        <label htmlFor="email" className="block mb-2">Email <span className="text-red-600">*</span></label>
-                        <input type="email" name="" id="email" className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={email} onChange={(e) => {
+                        <label htmlFor="email" className="block mb-2 text-sm font-semibold">Email <span className="text-red-600">*</span></label>
+                        <input type="email" name="" id="email" className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={email} onChange={(e) => {
                             setEmail(e.target.value)
                         }} />
                     </div>
                     <div className="phone">
-                        <label htmlFor="phone" className="block mb-2">Phone number</label>
-                        <input type="number" name="" id="phone" className="w-full px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={phone} onChange={(e) => {
+                        <label htmlFor="phone" className="block mb-2 text-sm font-semibold">Phone number</label>
+                        <input type="number" name="" id="phone" className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500" value={phone} onChange={(e) => {
                             setPhone(e.target.value)
                         }} />
                     </div>
                     <div className="messege">
-                        <label htmlFor="msg" className="block mb-2">Message <span className="text-red-600">*</span></label>
+                        <label htmlFor="msg" className="block mb-2 text-sm font-semibold">Message <span className="text-red-600">*</span></label>
                         <textarea name="" id="msg" className="w-full h-52 px-2 py-1 outline-fuchsia-400 outline-1 ring-1 rounded-sm ring-zinc-400" value={message} onChange={(e) => {
                             setMessage(e.target.value)
                         }}></textarea>
                     </div>
 
-                    <button className="text-white px-4 py-2 rounded-md bg-fuchsia-500 w-full font-bold" onClick={() => {
+                    <button className="text-white px-6 py-3 rounded-full bg-fuchsia-500 hover:bg-fuchsia-600 w-full sm:w-fit font-bold" onClick={() => {
                         submitRequest()
-                    }}>Lets Talk</button>
+                    }}>Send enquiry</button>
 
                 </div>
             </div>

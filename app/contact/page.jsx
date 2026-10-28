@@ -1,17 +1,26 @@
 import React from 'react'
 import Contact from '../components/Contact'
+import PageHeader from '../components/PageHeader'
 
 export default function ContactPage() {
     return (
         <>
-            <div className="h-96 bg-fuchsia-600/80 flex justify-center items-center flex-col mb-6">
-                <div className="heading text-white m-auto text-center space-y-3">
-                    <div className="heading text-2xl font-bold sm:text-3xl">Want to organize Event ?</div>
-                    <div className="para md:text-lg">Connect with us and we will help you to organize an event.</div>
+            <PageHeader label="Contact us" title="Want to organise an event?" text="Tell us what you are planning and we will help you put it together." />
+            <div className="container m-auto px-4 mt-16 grid lg:grid-cols-5 gap-12">
+                <div className="lg:col-span-2 space-y-8">
+                    <div>
+                        <div className="font-code text-xs uppercase tracking-widest text-fuchsia-600 mb-2">What to tell us</div>
+                        <p className="text-zinc-600">The type of event, a rough date, how many guests you expect and your budget. Even if you only have an idea, that is a good place to start.</p>
+                    </div>
+                    <div>
+                        <div className="font-code text-xs uppercase tracking-widest text-fuchsia-600 mb-2">What happens next</div>
+                        <p className="text-zinc-600">Someone from our team will call or email you to talk it through. There is no charge for the first conversation.</p>
+                    </div>
                 </div>
-                <div className="container bg-white text-center text-2xl font-bold py-4 md:py-6 rounded-t-xl md:rounded-t-3xl text-zinc-800">Contact Us</div>
+                <div className="lg:col-span-3">
+                    <Contact />
+                </div>
             </div>
-            <Contact/>
         </>
     )
 }
