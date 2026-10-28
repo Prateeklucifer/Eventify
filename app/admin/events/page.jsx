@@ -1,0 +1,269 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { MdDelete } from "react-icons/md";
+import { IoIosAdd } from "react-icons/io";
+import { HiOutlineChevronDown } from "react-icons/hi2";
+import { Bounce, ToastContainer, toast } from "react-toastify";
+
+export default function AdminEventsPage() {
+  const [events, setEvents] = useState([]);
+  const [render, setRender] = useState(false);
+
+  const getAllEvents = async () => {
+    let res = await fetch("http://localhost:3000/api/events");
+    let data = await res.json();
+    setEvents(data.data);
+  };
+
+  const addEvent = async () => {
+    let data = await fetch("http://localhost:3000/api/admin/events", {
+      method: "POST",
+    });
+
+    if (data.status == 200) {
+      sucessMsg("event added sucessfully");
+      setRender(!render);
+    } else {
+      errorMsg("can not add event");
+    }
+  };
+
+  const removeEvent = async (id) => {
+    if (!confirm("All registrations of this event will also be deleted. Continue?")) {
+      return;
+    }
+
+    let data = await fetch("http://localhost:3000/api/admin/events", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+    });
+
+    if (data.status == 200) {
+      sucessMsg("event deleted sucessfully");
+      setRender(!render);
+    } else {
+      errorMsg("can not delete event");
+    }
+  };
+
+  // one function for all inputs, field is the column name
+  const updateField = (event, id, field) => {
+    let data = [...events];
+
+    let index = data.findIndex((item) => item.id == id);
+    if (index != -1) {
+      data[index][field] = event.target.value;
+      setEvents(data);
+    }
+  };
+
+  const updateRecords = async () => {
+    let data = await fetch("http://localhost:3000/api/admin/events", {
+      method: "PUT",
+      body: JSON.stringify({ AllRecords: events }),
+    });
+
+    if (data.status == 200) {
+      sucessMsg("Data updated sucessfully");
+    } else {
+      errorMsg("can not update data");
+    }
+  };
+
+  const sucessMsg = (message) => {
+    toast.success(message, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
+
+  const errorMsg = (message) => {
+    toast.error(message, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
+
+  useEffect(() => {
+    getAllEvents();
+  }, [render]);
+
+  return (
+    <>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover={false}
+        theme="light"
+      />
+
+      <div className="md:mx-4">
+        <div className="container m-auto px-4 md:px-0">
+          <div className="heading text-3xl font-semibold text-center my-4">
+            Events
+          </div>
+          <div className="faqs flex flex-col gap-6">
+            {events?.map((item, index) => (
+              <details
+                className="group border-b-[1px] py-4 border-zinc-300 w-full cursor-pointer"
+                key={index}
+              >
+                <summary className="text-zinc-900 flex items-center justify-between gap-2">
+                  <div className="left">
+                    <div className="font-semibold text-xl">{item.title}</div>
+                    <div className="text-sm text-zinc-500">
+                      {item.bookedSeats} / {item.totalSeats} seats booked
+                    </div>
+                  </div>
+                  <div className="right flex items-center gap-4">
+                    <button className="text-red-600">
+                      <MdDelete
+                        size={20}
+                        onClick={() => {
+                          removeEvent(item.id);
+                        }}
+                      />
+                    </button>
+                    <div className="group-open:rotate-180 flex gap-2">
+                      <HiOutlineChevronDown size={26} />{" "}
+                    </div>
+                  </div>
+                </summary>
+                <div className="faq flex flex-col my-2">
+                  <label htmlFor="title">
+                    <div className="block py-2">Title</div>
+                    <input
+                      type="text"
+                      id="title"
+                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      value={item.title}
+                      onChange={(e) => {
+                        updateField(e, item.id, "title");
+                      }}
+                    />
+                  </label>
+                  <div className="flex flex-col md:flex-row md:gap-4">
+                    <label htmlFor="eventDate" className="md:w-1/3">
+                      <div className="block py-2">Date</div>
+                      <input
+                        type="date"
+                        id="eventDate"
+                        className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                        value={item.eventDate}
+                        onChange={(e) => {
+                          updateField(e, item.id, "eventDate");
+                        }}
+                      />
+                    </label>
+                    <label htmlFor="eventTime" className="md:w-1/3">
+                      <div className="block py-2">Time</div>
+                      <input
+                        type="text"
+                        id="eventTime"
+                        className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                        value={item.eventTime}
+                        onChange={(e) => {
+                          updateField(e, item.id, "eventTime");
+                        }}
+                      />
+                    </label>
+                    <label htmlFor="totalSeats" className="md:w-1/3">
+                      <div className="block py-2">Total Seats</div>
+                      <input
+                        type="number"
+                        id="totalSeats"
+                        className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                        value={item.totalSeats}
+                        onChange={(e) => {
+                          updateField(e, item.id, "totalSeats");
+                        }}
+                      />
+                    </label>
+                  </div>
+                  <label htmlFor="venue">
+                    <div className="block py-2">Venue</div>
+                    <input
+                      type="text"
+                      id="venue"
+                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      value={item.venue}
+                      onChange={(e) => {
+                        updateField(e, item.id, "venue");
+                      }}
+                    />
+                  </label>
+                  <label htmlFor="imageUrl">
+                    <div className="block py-2">Image Url</div>
+                    <input
+                      type="text"
+                      id="imageUrl"
+                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      value={item.imageUrl}
+                      onChange={(e) => {
+                        updateField(e, item.id, "imageUrl");
+                      }}
+                    />
+                  </label>
+                  <label htmlFor="description">
+                    <div className="block py-2">Description</div>
+                    <textarea
+                      id="description"
+                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
+                      value={item.description}
+                      onChange={(e) => {
+                        updateField(e, item.id, "description");
+                      }}
+                    />
+                  </label>
+                </div>
+              </details>
+            ))}
+          </div>
+          <div className="buttons my-4 flex flex-col gap-4">
+            <button
+              className="outline-dashed outline-1 py-1 rounded-sm outline-zinc-400 flex items-center justify-center text-sm"
+              onClick={() => {
+                addEvent();
+              }}
+            >
+              {" "}
+              <span>
+                <IoIosAdd size={26} />
+              </span>
+              Add Event
+            </button>
+            <button
+              className="bg-zinc-800 text-white py-[2px] px-4 rounded-md w-fit self-end"
+              onClick={() => {
+                updateRecords();
+              }}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

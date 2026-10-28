@@ -12,7 +12,7 @@ export async function POST(req, res) {
     if (allEntries.length > 0) {
       return NextResponse.json({ data: allEntries });
     } else {
-      return NextResponse.json({ status: 404 });
+      return NextResponse.json({ message: "blog not found" }, { status: 404 });
     }
   } catch (err) {
     console.log(err);

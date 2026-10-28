@@ -19,6 +19,18 @@ export default function SideBar() {
 
   const links = [
     {
+      name: "Dashboard",
+      href: "/admin",
+    },
+    {
+      name: "Events",
+      href: "/admin/events",
+    },
+    {
+      name: "Registrations",
+      href: "/admin/registrations",
+    },
+    {
       name: "Services",
       href: "/admin/services",
     },

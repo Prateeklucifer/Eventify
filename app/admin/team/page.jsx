@@ -1,15 +1,45 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { MdDelete } from "react-icons/md";
+import { IoIosAdd } from "react-icons/io";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 
 export default function AdminFeatures() {
   const [Teams, setTeams] = useState([]);
+  const [render, setRender] = useState(false);
 
   const getTeams = async () => {
     let res = await fetch("http://localhost:3000/api/team");
     let data = await res.json();
     setTeams(data.data);
+  };
+
+  const addMember = async () => {
+    let res = await fetch("http://localhost:3000/api/admin/team", {
+      method: "POST",
+    });
+
+    if (res.status == 200) {
+      sucessMsg("member added sucessfully");
+      setRender(!render);
+    } else {
+      errorMsg("can not add member");
+    }
+  };
+
+  const removeMember = async (id) => {
+    let res = await fetch("http://localhost:3000/api/admin/team", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+    });
+
+    if (res.status == 200) {
+      sucessMsg("member removed sucessfully");
+      setRender(!render);
+    } else {
+      errorMsg("can not remove member");
+    }
   };
 
   const updateName = (event, index) => {
@@ -67,7 +97,7 @@ export default function AdminFeatures() {
 
   useEffect(() => {
     getTeams();
-  }, []);
+  }, [render]);
 
   return (
     <>
@@ -92,7 +122,17 @@ export default function AdminFeatures() {
             {Teams?.map((item, index) => (
               <div className="faq flex flex-col" key={index}>
                 <label htmlFor="name">
-                  <div className="block py-2">Name</div>
+                  <div className="py-2 flex items-center justify-between">
+                    Name
+                    <button
+                      className="text-red-600"
+                      onClick={() => {
+                        removeMember(item.id);
+                      }}
+                    >
+                      <MdDelete size={20} />
+                    </button>
+                  </div>
                   <input
                     type="text"
                     name="name"
@@ -119,9 +159,20 @@ export default function AdminFeatures() {
               </div>
             ))}
           </div>
-          <div className="buttons my-4 flex items-center justify-end">
+          <div className="buttons my-4 flex flex-col gap-4">
             <button
-              className="bg-zinc-700 text-white py-[2px] px-4 rounded-md w-fit"
+              className="outline-dashed outline-1 py-1 rounded-sm outline-zinc-400 flex items-center justify-center text-sm"
+              onClick={() => {
+                addMember();
+              }}
+            >
+              <span>
+                <IoIosAdd size={26} />
+              </span>
+              Add Member
+            </button>
+            <button
+              className="bg-zinc-700 text-white py-[2px] px-4 rounded-md w-fit self-end"
               onClick={() => {
                 updateData();
               }}
