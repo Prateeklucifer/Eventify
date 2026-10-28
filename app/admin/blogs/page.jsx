@@ -160,13 +160,13 @@ export default function BloodsPage() {
 
       <div className="md:mx-4">
         <div className="container m-auto px-4 md:px-0">
-          <div className="heading text-3xl font-semibold text-center my-4">
+          <div className="heading font-display uppercase text-4xl md:text-5xl mt-2 mb-8">
             Blogs
           </div>
           <div className="faqs flex flex-col gap-6">
             {blogs?.map((item, index) => (
               <details
-                className="group border-b-[1px] py-4 border-zinc-300 w-full cursor-pointer"
+                className="group bg-white rounded-2xl p-5 md:p-6 shadow-sm w-full cursor-pointer"
                 key={index}
                 open
               >
@@ -188,14 +188,14 @@ export default function BloodsPage() {
                 </summary>
                 <div className="faq flex flex-col my-2">
                   <label htmlFor="title">
-                    <div className="py-2 flex items-center justify-between">
+                    <div className="pt-4 pb-1.5 text-sm font-semibold text-zinc-600 flex items-center justify-between">
                       Title{" "}
                     </div>
                     <input
                       type="text"
                       name="title"
                       id="title"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white"
                       value={item.title}
                       onChange={(e) => {
                         updateTitle(e, item.id);
@@ -203,12 +203,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="description">
-                    <div className="block py-2">Description</div>
+                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Description</div>
                     <input
                       type="text"
                       name="description"
                       id="description"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white"
                       value={item.description}
                       onChange={(e) => {
                         updateDescription(e, item.id);
@@ -216,12 +216,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="imageUrl">
-                    <div className="block py-2">Image Url</div>
+                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Image Url</div>
                     <input
                       type="text"
                       name="imageUrl"
                       id="imageUrl"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                      className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white"
                       value={item.imageUrl}
                       onChange={(e) => {
                         updateImageUrl(e, item.id);
@@ -229,12 +229,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="para1">
-                    <div className="block py-2">Paragraph 1</div>
+                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 1</div>
                     <textarea
                       type="text"
                       name="para1"
                       id="para1"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
+                      className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-40"
                       value={item.para1}
                       onChange={(e) => {
                         updatePara1(e, item.id);
@@ -242,12 +242,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="para2">
-                    <div className="block py-2">Paragraph 2</div>
+                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 2</div>
                     <textarea
                       type="text"
                       name="para2"
                       id="para2"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
+                      className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-40"
                       value={item.para2}
                       onChange={(e) => {
                         updatePara2(e, item.id);
@@ -255,12 +255,12 @@ export default function BloodsPage() {
                     />
                   </label>
                   <label htmlFor="para3">
-                    <div className="block py-2">Paragraph 3</div>
+                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 3</div>
                     <textarea
                       type="text"
                       name="para3"
                       id="para3"
-                      className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full min-h-40"
+                      className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-40"
                       value={item.para3}
                       onChange={(e) => {
                         updatePara3(e, item.id);
@@ -271,9 +271,9 @@ export default function BloodsPage() {
               </details>
             ))}
           </div>
-          <div className="buttons my-4 flex flex-col gap-4">
+          <div className="buttons my-6 flex flex-col gap-6">
             <button
-              className="outline-dashed outline-1 py-1 rounded-sm outline-zinc-400 flex items-center justify-center text-sm"
+              className="outline-dashed outline-2 py-3 rounded-2xl outline-zinc-300 hover:outline-fuchsia-400 hover:text-fuchsia-600 font-semibold flex items-center justify-center text-sm"
               onClick={() => {
                 addFeild();
               }}
@@ -285,7 +285,7 @@ export default function BloodsPage() {
               Add Column
             </button>
             <button
-              className="bg-zinc-800 text-white py-[2px] px-4 rounded-md w-fit self-end"
+              className="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-2 px-8 rounded-full w-fit self-end"
               onClick={() => {
                 updateRecords();
               }}

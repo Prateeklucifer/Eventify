@@ -1,10 +1,13 @@
 "use client";
+
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function LoginPage() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const router = useRouter();
 
@@ -28,58 +31,61 @@ export default function LoginPage() {
         router.push("/admin");
       }, 2000);
     } else {
-      // will throw error
+      setError("Wrong username or password");
     }
   }
 
   return (
-    <div className="flex justify-center items-center flex-col h-screen bg-black">
-      <div className="absolute top-0 left-0 h-full w-full z-40">
-        <img src="/login.png" alt="" className="w-full h-full object-cover opacity-20" />
+    <div className="relative flex justify-center items-center h-screen bg-plum px-4">
+      <div className="absolute top-0 left-0 h-full w-full">
+        <img src="/login.png" alt="" className="w-full h-full object-cover opacity-25" />
       </div>
-      <div className="md:px-4 z-50">
-        <div className="container m-auto px-4 md:px-0">
-          <div className="Heading font-bold text-center text-2xl mt-4 md:mt-8 text-white md:text-3xl">
-            Welcome Back !
-          </div>
-        </div>
-      </div>
-      <div className=" container mx-auto flex flex-col md:px-32 lg:px-52 xl:px-64 2xl:px-72  z-50 text-white">
-        <div className="right px-4 py-2 flex flex-col gap-6 lg:py-8 lg:px-12 xl:px-28">
+      <div className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl p-7 md:p-10">
+        <Link href={"/"} className="font-code font-semibold text-xl text-fuchsia-500 tracking-tight">Eventify</Link>
+        <div className="font-display uppercase text-4xl md:text-5xl text-zinc-900 mt-6">Welcome back</div>
+        <div className="text-zinc-500 mt-2">Log in to manage events, enquiries and website content.</div>
+
+        <form
+          className="flex flex-col gap-5 mt-8"
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendRequest();
+          }}
+        >
           <div className="name">
-            <label htmlFor="name" className="block mb-2">
-              Name
+            <label htmlFor="name" className="block mb-2 text-sm font-semibold">
+              Username
             </label>
             <input
-              type="name"
-              name=""
+              type="text"
               id="name"
-              className="w-full px-2 py-1 outline-fuchsia-500 outline-1 ring-1 rounded-sm ring-neutral-400 text-zinc-900"
+              className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={name}
               onChange={getName}
             />
           </div>
           <div className="password">
-            <label htmlFor="password" className="block mb-2">
+            <label htmlFor="password" className="block mb-2 text-sm font-semibold">
               Password
             </label>
             <input
               type="password"
-              name=""
               id="password"
-              className="w-full px-2 py-1 outline-fuchsia-500 outline-1 ring-1 rounded-sm ring-neutral-400 text-zinc-900"
+              className="w-full px-3 py-2.5 rounded-lg ring-1 ring-zinc-300 outline-none focus:ring-2 focus:ring-fuchsia-500"
               value={password}
               onChange={getPassword}
             />
           </div>
 
+          {error && <div className="text-sm text-red-600">{error}</div>}
+
           <button
-            className="text-white px-4 py-2 rounded-md bg-fuchsia-500 hover:bg-fuchsia-500/90 w-full font-semibold"
-            onClick={sendRequest}
+            type="submit"
+            className="text-white px-4 py-3 rounded-full bg-fuchsia-500 hover:bg-fuchsia-600 w-full font-bold mt-2"
           >
-            Login
+            Log in
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );

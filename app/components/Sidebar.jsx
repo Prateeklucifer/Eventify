@@ -72,7 +72,7 @@ export default function SideBar() {
   }
 
   return (
-    <nav className="py-3 md:py-4 px-4">
+    <nav className="py-3 md:py-0 px-4 md:px-0 bg-white md:bg-transparent border-b border-zinc-100 md:border-0 sticky top-0 z-50">
       <div className="container m-auto flex items-center justify-start md:justify-between gap-6">
         <div id="mobi" className="flex items-center gap-4 md:hidden">
           <button
@@ -100,7 +100,7 @@ export default function SideBar() {
           <div
             className={`${
               isOpen ? "flex left-0" : "-left-[100%]"
-            } flex-col sidebar fixed top-0 h-screen bg-white w-60 text-neutral-900 py-3 px-4 z-[40] transition-all duration-300 ease-in-out`}
+            } flex-col sidebar fixed top-0 h-screen bg-plum w-64 text-zinc-300 py-4 px-4 z-[40] transition-all duration-300 ease-in-out`}
           >
             <div className="header flex justify-start items-center">
               <button
@@ -109,7 +109,7 @@ export default function SideBar() {
                 }}
               >
                 {" "}
-                <HiOutlineX size={30} />{" "}
+                <HiOutlineX size={30} className="text-white" />{" "}
               </button>
             </div>
             <ul className="flex flex-col space-y-4 font-medium px-2 mt-4">
@@ -120,40 +120,46 @@ export default function SideBar() {
                     handleHamburger();
                   }}
                 >
-                  <Link href={link.href} className="block">
+                  <Link href={link.href} className={`block ${link.href == pathname && "text-white font-bold"}`}>
                     {link.name}
                   </Link>
                 </li>
               ))}
-              <button className="text-zinc-200 py-2 px-4 hover:text-gray-100 hover:bg-zinc-700 block rounded-md text-start bg-zinc-900 font-bold" onClick={()=>{removeToken()}}>Logout</button>
+              <button className="text-white py-2 px-4 hover:bg-white/10 block rounded-full text-start ring-1 ring-white/30 font-bold" onClick={()=>{removeToken()}}>Logout</button>
             </ul>
           </div>
         </div>
         <div
           id="desk"
-          className="hidden md:flex w-1/4 lg:w-1/5 xl:w-1/6 h-full top-0 left-0 px-6 py-4 fixed flex-col gap-6 bg-gray-100"
+          className="hidden md:flex w-1/4 lg:w-1/5 xl:w-1/6 h-full top-0 left-0 px-4 py-6 fixed flex-col gap-8 bg-plum"
         >
           <Link
             href={"/"}
-            className={`${sourceCodePro.className} logo font-semibold text-xl lg:text-2xl text-fuchsia-500 tracking-tight`}
+            className={`${sourceCodePro.className} logo font-semibold text-xl lg:text-2xl text-fuchsia-400 tracking-tight px-3`}
           >
             Eventify
+            <span className="block font-code text-[10px] uppercase tracking-widest text-zinc-500 mt-1">Admin panel</span>
           </Link>
-          <ul className="flex flex-col gap-2 md:text-sm lg:text-base">
+          <ul className="flex flex-col gap-1 text-sm flex-1">
             {links.map((link, key) => (
               <li key={key}>
                 <Link
                   href={link.href}
-                  className={`text-zinc-600 py-3 px-4 hover:bg-gray-200 hover:text-zinc-900 block rounded-md ${
-                    link.href == pathname && "font-bold bg-gray-200"
+                  className={`py-2.5 px-3 block rounded-lg border-l-2 ${
+                    link.href == pathname
+                      ? "font-bold bg-white/10 text-white border-fuchsia-400"
+                      : "text-zinc-400 hover:text-white hover:bg-white/5 border-transparent"
                   }`}
                 >
                   {link.name}
                 </Link>
               </li>
             ))}
-            <button className="text-zinc-200 py-3 px-4 hover:text-gray-100 hover:bg-zinc-700 block rounded-md text-start bg-zinc-900 font-bold" onClick={()=>{removeToken()}}>Logout</button>
           </ul>
+          <div className="flex flex-col gap-2 text-sm">
+            <Link href={"/"} className="py-2 px-3 text-zinc-400 hover:text-white">View website &rarr;</Link>
+            <button className="text-white py-2.5 px-4 hover:bg-white/10 block rounded-full text-center ring-1 ring-white/30 font-bold" onClick={()=>{removeToken()}}>Logout</button>
+          </div>
         </div>
       </div>
     </nav>

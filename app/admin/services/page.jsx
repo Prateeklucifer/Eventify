@@ -138,87 +138,87 @@ export default function AdminServices() {
             />
             <div className="md:mx-4">
                 <div className="container m-auto px-4 md:px-0">
-                    <div className="heading text-3xl font-semibold text-center my-4">Services</div>
+                    <div className="heading font-display uppercase text-4xl md:text-5xl mt-2 mb-8">Services</div>
                     <div className="faqs flex flex-col gap-6">
                         {services?.map((item, index) => (
-                            <div className="faq flex flex-col" key={index}>
+                            <div className="faq flex flex-col bg-white rounded-2xl p-5 md:p-6 shadow-sm" key={index}>
                                 <label htmlFor="name">
-                                    <div className="block py-2">Primary Title</div>
-                                    <input type="text" name="name" id="name" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.mainTitle} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Primary Title</div>
+                                    <input type="text" name="name" id="name" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white" value={item.mainTitle} onChange={(e) => {
                                         updateMainTitle(e, index)
                                     }} />
                                 </label>
                                 <label htmlFor="para1">
-                                    <div className="block py-2">para1</div>
-                                    <textarea name="para1" id="para1" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para1} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 1</div>
+                                    <textarea name="para1" id="para1" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para1} onChange={(e) => {
                                         updatePara1(e, index)
                                     }}></textarea>
                                 </label>
                                 <label htmlFor="para2">
-                                    <div className="block py-2">para2</div>
-                                    <textarea name="para2" id="para2" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para2} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 2</div>
+                                    <textarea name="para2" id="para2" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para2} onChange={(e) => {
                                         updatePara2(e, index)
                                     }}></textarea>
                                 </label>
                                 <label htmlFor="secondaryTitle">
-                                    <div className="block py-2">secondaryTitle</div>
-                                    <input type="text" name="secondaryTitle" id="secondaryTitle" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.secondaryTitle} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Secondary Title</div>
+                                    <input type="text" name="secondaryTitle" id="secondaryTitle" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white" value={item.secondaryTitle} onChange={(e) => {
                                         updateSecondaryTitle(e, index)
                                     }} />
                                 </label>
                                 <label htmlFor="para3">
-                                    <div className="block py-2">para3</div>
-                                    <textarea name="para3" id="para3" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para3} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 3</div>
+                                    <textarea name="para3" id="para3" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para3} onChange={(e) => {
                                         updatePara3(e, index)
                                     }}></textarea>
                                 </label>
                                 <label htmlFor="para4">
-                                    <div className="block py-2">para4</div>
-                                    <textarea name="para4" id="para4" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para4} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 4</div>
+                                    <textarea name="para4" id="para4" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para4} onChange={(e) => {
                                         updatePara4(e, index)
                                     }}></textarea>
                                 </label>
                                 <label htmlFor="thirdTitle">
-                                    <div className="block py-2">secondaryTitle</div>
-                                    <input type="text" name="thirdTitle" id="thirdTitle" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.thirdTitle} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Secondary Title</div>
+                                    <input type="text" name="thirdTitle" id="thirdTitle" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white" value={item.thirdTitle} onChange={(e) => {
                                         updateThirdTitle(e, index)
                                     }} />
                                 </label>
                                 <label htmlFor="para5">
-                                    <div className="block py-2">para3</div>
-                                    <textarea name="para5" id="para5" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para5} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 3</div>
+                                    <textarea name="para5" id="para5" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para5} onChange={(e) => {
                                         updatePara5(e, index)
                                     }}></textarea>
                                 </label>
                                 <label htmlFor="para6">
-                                    <div className="block py-2">para6</div>
-                                    <textarea name="para6" id="para6" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para6} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 6</div>
+                                    <textarea name="para6" id="para6" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para6} onChange={(e) => {
                                         updatePara6(e, index)
                                     }}></textarea>
                                 </label>
                                 <label htmlFor="fourthTitle">
-                                    <div className="block py-2">fourthTitle</div>
-                                    <input type="text" name="fourthTitle" id="fourthTitle" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.fourthTitle} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Fourth Title</div>
+                                    <input type="text" name="fourthTitle" id="fourthTitle" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white" value={item.fourthTitle} onChange={(e) => {
                                         updateFourthTitle(e, index)
                                     }} />
                                 </label>
                                 <label htmlFor="para7">
-                                    <div className="block py-2">para7</div>
-                                    <textarea name="para7" id="para7" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para7} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 7</div>
+                                    <textarea name="para7" id="para7" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para7} onChange={(e) => {
                                         updatePara7(e, index)
                                     }}></textarea>
                                 </label>
                                 <label htmlFor="para8">
-                                    <div className="block py-2">para8</div>
-                                    <textarea name="para8" id="para8" className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full" value={item.para8} onChange={(e) => {
+                                    <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Paragraph 8</div>
+                                    <textarea name="para8" id="para8" className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white min-h-28" value={item.para8} onChange={(e) => {
                                         updatePara8(e, index)
                                     }}></textarea>
                                 </label>
                             </div>
                         ))}
                     </div>
-                    <div className="buttons my-4 flex items-center justify-end">
-                        <button className="bg-zinc-800 text-white py-[2px] px-4 rounded-md w-fit" onClick={() => {
+                    <div className="buttons my-6 flex items-center justify-end">
+                        <button className="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-2 px-8 rounded-full w-fit" onClick={() => {
                             updateData()
                         }}>Save</button>
                     </div>

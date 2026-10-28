@@ -99,13 +99,13 @@ export default function AdminRegistrationsPage() {
       />
       <div className="md:mx-4">
         <div className="container m-auto px-4 md:px-0">
-          <div className="heading text-3xl font-semibold text-center my-4">
+          <div className="heading font-display uppercase text-4xl md:text-5xl mt-2 mb-8">
             Registrations
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
             <select
-              className="px-2 py-1 rounded-sm outline-none ring-1 ring-zinc-400 w-full sm:w-72"
+              className="px-3 py-2 rounded-full outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 bg-white w-full sm:w-72"
               value={selectedEvent}
               onChange={(e) => {
                 setSelectedEvent(e.target.value);
@@ -129,11 +129,11 @@ export default function AdminRegistrationsPage() {
               No registrations yet
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto bg-white rounded-2xl shadow-sm px-5">
               <table className="w-full text-left text-sm">
                 <thead>
-                  <tr className="border-b border-zinc-300 text-zinc-500">
-                    <th className="py-2 pr-4">Name</th>
+                  <tr className="border-b border-zinc-200 text-zinc-500 font-code text-xs uppercase tracking-wider">
+                    <th className="py-4 pr-4">Name</th>
                     <th className="py-2 pr-4">Event</th>
                     <th className="py-2 pr-4">Email</th>
                     <th className="py-2 pr-4">Phone</th>
@@ -144,13 +144,13 @@ export default function AdminRegistrationsPage() {
                 </thead>
                 <tbody>
                   {filtered?.map((item) => (
-                    <tr className="border-b border-zinc-200" key={item.id}>
-                      <td className="py-3 pr-4 font-semibold">{item.name}</td>
-                      <td className="py-3 pr-4">{item.eventTitle}</td>
+                    <tr className="border-b border-zinc-100 last:border-0 hover:bg-mist" key={item.id}>
+                      <td className="py-3 pr-4 font-semibold whitespace-nowrap">{item.name}</td>
+                      <td className="py-3 pr-4 min-w-40">{item.eventTitle}</td>
                       <td className="py-3 pr-4">{item.email}</td>
                       <td className="py-3 pr-4">{item.phone}</td>
                       <td className="py-3 pr-4">{item.seats}</td>
-                      <td className="py-3 pr-4">{dateGiver(item.createdAt)}</td>
+                      <td className="py-3 pr-4 font-code text-xs whitespace-nowrap">{dateGiver(item.createdAt)}</td>
                       <td className="py-3">
                         <button
                           className="text-red-600"

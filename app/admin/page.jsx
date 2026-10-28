@@ -35,7 +35,7 @@ export default function AdminPage() {
   return (
     <div className="md:mx-4">
       <div className="container m-auto px-4 md:px-0">
-        <div className="heading text-3xl font-semibold text-center my-4">
+        <div className="heading font-display uppercase text-4xl md:text-5xl mt-2 mb-8">
           Dashboard
         </div>
 
@@ -44,26 +44,28 @@ export default function AdminPage() {
             <Link
               href={card.href}
               key={card.key}
-              className={`ring-1 ring-zinc-300 rounded-lg p-4 md:p-6 hover:bg-gray-50 ${
-                card.key == "pendingEnquiries" && counts?.pendingEnquiries > 0 && "ring-fuchsia-400"
+              className={`rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md transition ${
+                card.key == "pendingEnquiries" && counts?.pendingEnquiries > 0
+                  ? "bg-fuchsia-500 text-white"
+                  : "bg-white"
               }`}
             >
-              <div className="text-sm text-zinc-500">{card.name}</div>
-              <div className="text-3xl font-bold mt-2">
+              <div className="font-code text-xs uppercase tracking-wider opacity-70">{card.name}</div>
+              <div className="font-display text-5xl mt-3">
                 {counts ? counts[card.key] : "-"}
               </div>
             </Link>
           ))}
         </div>
 
-        <div className="text-xl font-semibold mt-10 mb-4">Recent Registrations</div>
+        <div className="font-display uppercase text-2xl mt-12 mb-4">Recent registrations</div>
         {recent.length == 0 ? (
           <div className="text-zinc-500 text-sm">No registrations yet</div>
         ) : (
-          <div className="flex flex-col">
+          <div className="flex flex-col bg-white rounded-2xl shadow-sm px-5">
             {recent.map((item) => (
               <div
-                className="flex items-center justify-between border-b border-zinc-200 py-3 text-sm"
+                className="flex items-center justify-between gap-4 border-b border-zinc-100 last:border-0 py-4 text-sm"
                 key={item.id}
               >
                 <div>
@@ -71,7 +73,7 @@ export default function AdminPage() {
                   {item.seats} {item.seats == 1 ? "seat" : "seats"} for{" "}
                   <span className="font-semibold">{item.eventTitle}</span>
                 </div>
-                <div className="text-zinc-500">{dateGiver(item.createdAt)}</div>
+                <div className="font-code text-xs text-zinc-500 whitespace-nowrap">{dateGiver(item.createdAt)}</div>
               </div>
             ))}
           </div>

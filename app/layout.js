@@ -18,8 +18,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${mulish.className} ${anton.variable} ${sourceCodePro.variable} ${
-          pathname.startsWith("/admin") ? "flex flex-col md:flex-row" : ""
-        } text-zinc-800 bg-white overflow-x-hidden`}
+          pathname.startsWith("/admin") ? "flex flex-col md:flex-row bg-mist min-h-screen" : "bg-white"
+        } text-zinc-800 overflow-x-hidden`}
       >
         {pathname.startsWith("/admin") && <SideBar />}
         {!pathname.startsWith("/admin") && !pathname.startsWith("/login")  && <Navbar />}
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
 
         {children}
 
-        {!pathname.startsWith("/admin") && <Footer />}
+        {!pathname.startsWith("/admin") && !pathname.startsWith("/login") && <Footer />}
       </body>
     </html>
   );

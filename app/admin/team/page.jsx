@@ -115,14 +115,14 @@ export default function AdminFeatures() {
       />
       <div className="w-full">
         <div className="container m-auto px-4 md:px-0 ">
-          <div className="heading text-3xl font-semibold text-center my-4">
+          <div className="heading font-display uppercase text-4xl md:text-5xl mt-2 mb-8">
             All Teams
           </div>
           <div className="faqs flex flex-col gap-6">
             {Teams?.map((item, index) => (
-              <div className="faq flex flex-col" key={index}>
+              <div className="faq flex flex-col bg-white rounded-2xl p-5 md:p-6 shadow-sm" key={index}>
                 <label htmlFor="name">
-                  <div className="py-2 flex items-center justify-between">
+                  <div className="pt-4 pb-1.5 text-sm font-semibold text-zinc-600 flex items-center justify-between">
                     Name
                     <button
                       className="text-red-600"
@@ -137,7 +137,7 @@ export default function AdminFeatures() {
                     type="text"
                     name="name"
                     id="name"
-                    className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                    className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white"
                     value={item.name}
                     onChange={(e) => {
                       updateName(e, index);
@@ -145,11 +145,11 @@ export default function AdminFeatures() {
                   />
                 </label>
                 <label htmlFor="para1">
-                  <div className="block py-2">Image Url</div>
+                  <div className="block pt-4 pb-1.5 text-sm font-semibold text-zinc-600">Image Url</div>
                   <input
                     name="para1"
                     id="para1"
-                    className="px-2 rounded-sm outline-none ring-1 ring-zinc-400 w-full"
+                    className="px-3 py-2 rounded-lg outline-none ring-1 ring-zinc-300 focus:ring-2 focus:ring-fuchsia-500 w-full bg-white"
                     value={item.imageURL}
                     onChange={(e) => {
                       updateImageURL(e, index);
@@ -159,9 +159,9 @@ export default function AdminFeatures() {
               </div>
             ))}
           </div>
-          <div className="buttons my-4 flex flex-col gap-4">
+          <div className="buttons my-6 flex flex-col gap-6">
             <button
-              className="outline-dashed outline-1 py-1 rounded-sm outline-zinc-400 flex items-center justify-center text-sm"
+              className="outline-dashed outline-2 py-3 rounded-2xl outline-zinc-300 hover:outline-fuchsia-400 hover:text-fuchsia-600 font-semibold flex items-center justify-center text-sm"
               onClick={() => {
                 addMember();
               }}
@@ -172,7 +172,7 @@ export default function AdminFeatures() {
               Add Member
             </button>
             <button
-              className="bg-zinc-700 text-white py-[2px] px-4 rounded-md w-fit self-end"
+              className="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-2 px-8 rounded-full w-fit self-end"
               onClick={() => {
                 updateData();
               }}
